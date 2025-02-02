@@ -1,5 +1,5 @@
 <%- include('partials/header') %>
-
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <div class="container">
   <h1> Study Time Tracker </h1>
@@ -7,15 +7,17 @@
   <div class="pixel-panel">
     <div class="display">
       <div class="time-display" id="currentSession">00:00:00</div>
+      <br>
       <div class="stats">
         <div>📅 Hoje: <span id="todayTotal">0h 0m</span></div>
         <div>📊 Semana: <span id="weekTotal">0h 0m</span></div>
+        <br>
       </div>
     </div>
     
-    <button class="pixel-button" id="startStopButton">▶️ Iniciar Estudo</button>
+    <button class="button" id="startStopButton">▶️ Iniciar Estudo</button>
   </div>
-
+  <br>
   <div class="pixel-panel history">
     <h2>📜 Histórico de Sessões</h2>
     <div id="sessionsList">
