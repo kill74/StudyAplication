@@ -31,6 +31,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 /* Container principal */
@@ -42,7 +43,6 @@ body {
   position: relative;
 }
 
-/* Header moderno */
 .header {
   padding: 3rem 0;
   border-bottom: 4px solid var(--primary-color);
@@ -66,7 +66,6 @@ body {
   );
 }
 
-/* Cartões modernos com efeito retro */
 .pixel-card {
   background: rgba(0, 0, 0, 0.8);
   border: 3px solid var(--primary-color);
@@ -92,7 +91,6 @@ body {
   opacity: 0.3;
 }
 
-/* Botões profissionais */
 .button {
   display: inline-flex;
   align-items: center;
@@ -122,7 +120,6 @@ body {
   box-shadow: 0 0 15px var(--primary-color);
 }
 
-/* Tipografia melhorada */
 h1, h2, h3 {
   font-family: var(--font-primary);
   margin-bottom: 2rem;
@@ -149,7 +146,6 @@ h2::after {
   background: var(--secondary-color);
 }
 
-/* Grid system moderno */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -163,7 +159,6 @@ h2::after {
   border-left: 4px solid var(--secondary-color);
 }
 
-/* Formulários profissionais */
 .input-group {
   margin: 2rem 0;
 }
@@ -183,7 +178,6 @@ h2::after {
   box-shadow: 0 0 10px var(--primary-color);
 }
 
-/* Animação de scanline mais sutil */
 .scanline {
   position: fixed;
   top: 0;
@@ -224,7 +218,6 @@ h2::after {
   }
 }
 
-/* Efeito de glitch moderno */
 @keyframes glitch {
   0% {
     transform: translate(0);
@@ -251,7 +244,6 @@ h2::after {
   text-shadow: 2px 2px var(--accent-color), -2px -2px var(--secondary-color);
 }
 
-/* Progress bar moderna */
 .progress-bar {
   height: 10px;
   background: rgba(255, 255, 255, 0.1);
@@ -269,3 +261,62 @@ h2::after {
   );
   transition: width 0.5s ease;
 }
+
+/*Animation*/
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  width: 256px;
+  height: 256px;
+}
+
+/* SMOKE */
+#smoke-1 {
+  stroke-dasharray: 0, 10;
+  animation: smoke 6s ease infinite;
+}
+
+#smoke-2 {
+  stroke-dasharray: 0, 10;
+  animation: smoke 6s 0.5s ease infinite;
+}
+
+@keyframes smoke {
+  0% { stroke-dasharray: 0, 10; }
+  50% { stroke-dasharray: 10, 0; }
+  100% { stroke-dasharray: 10, 0; opacity: 0; }
+}
+
+/* WRITING */
+#line-1 {
+  opacity: 0;
+  animation: writing 0.5s linear forwards;
+}
+
+#line-2 {
+  opacity: 0;
+  animation: writing 0.5s 1s linear forwards;
+}
+
+#line-3 {
+  opacity: 0;
+  animation: writing 0.5s 1.5s linear forwards;
+}
+
+#line-4 {
+  opacity: 0;
+  animation: writing 0.5s 2s linear forwards;
+}
+
+@keyframes writing {
+  0% { width: 0px; opacity: 1;}
+  100% { width: 14px; opacity: 1;}
+}
+
