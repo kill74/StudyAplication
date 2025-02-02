@@ -1,33 +1,142 @@
-body {
-    font-family: Arial, sans-serif;
+:root {
+    --retro-green: #00ff00;
+    --retro-blue: #00ffff;
+    --retro-pink: #ff00ff;
+    --bg-color: #000000;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--retro-green);
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.6;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background: #35424a;
-    color: #ffffff;
-    padding: 10px 0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .pixel-panel {
+    border: 4px solid var(--retro-green);
+    padding: 20px;
+    margin: 20px 0;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px var(--retro-green);
+  }
+  
+  .pixel-button {
+    background: var(--bg-color);
+    color: var(--retro-green);
+    border: 3px solid var(--retro-green);
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s;
+  }
+  
+  .pixel-button:hover {
+    background: var(--retro-green);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--retro-green);
+  }
+  
+  .time-display {
+    font-size: 2.5em;
     text-align: center;
-}
-
-h1 {
-    margin: 0;
-}
-
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-}
-
-footer {
-    background: #35424a;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
+    margin: 20px 0;
+    text-shadow: 0 0 10px var(--retro-green);
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .history {
+    color: var(--retro-blue);
+  }
+  
+  .session-item {
+    padding: 10px;
+    border-bottom: 2px dotted var(--retro-pink);
+    margin: 5px 0;
+  }
+  
+  /* Efeito CRT */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-}
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.2) 50%);
+    background-size: 100% 4px;
+    z-index: 999;
+    pointer-events: none;
+    animation: scanline 6s linear infinite;
+  }
+  
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  /* Novo estilo do mascote */
+.pet-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .pet {
+    width: 128px;
+    height: 128px;
+    background: url('/img/pet.png') no-repeat;
+    image-rendering: pixelated;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .pet-speech {
+    position: absolute;
+    bottom: 140px;
+    right: 0;
+    background: #000;
+    border: 2px solid var(--retro-pink);
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    font-size: 0.8em;
+    display: none;
+  }
+  
+  .pet-speech::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 30px;
+    border: 10px solid transparent;
+    border-top-color: var(--retro-pink);
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes dance {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+  }
