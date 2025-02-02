@@ -1,46 +1,59 @@
-<%- include('partials/header') %>
-
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Study HUD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
   <div class="container">
     <header class="header">
-      <h1 class="glitch-effect">📚 Study Time Tracker Pro</h1>
+      <h1>STUDY TERMINAL</h1>
     </header>
 
     <main>
-      <div class="pixel-panel">
-        <div class="time-display" id="currentSession">00:00:00</div>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h3>📅 Hoje</h3>
-            <div class="stat-value" id="todayTotal">0h 0m</div>
+      <div class="time-display" id="currentSession">00:00:00</div>
+      
+      <div class="stats-hud">
+        <div class="hud-panel">
+          <div class="hud-metric">
+            <span class="hud-label">TODAY</span>
+            <span class="hud-value" id="todayTotal">00.00m</span>
           </div>
-          <div class="stat-item">
-            <h3>📊 Semana</h3>
-            <div class="stat-value" id="weekTotal">0h 0m</div>
+          <div class="hud-metric">
+            <span class="hud-label">WEEK</span>
+            <span class="hud-value" id="weekTotal">00.00m</span>
           </div>
         </div>
-        <button class="button" id="startStopButton">▶️ Iniciar Sessão</button>
+        <br>
+        <button class="sketch-button" id="startStopButton">ENGAGE SESSION</button>
       </div>
 
-      <div class="pixel-panel history">
-        <h2>📜 Histórico Completo</h2>
-        <div id="sessionsList">
+      <div class="session-terminal">
+        <div class="terminal-header">
+          <div class="terminal-lights">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+            <div class="light green"></div>
+          </div>
+          <h2>SESSION ARCHIVE</h2>
+        </div>
+        
+        <div class="session-list">
           <% sessions.forEach(session => { %>
             <div class="session-item">
-              <div class="session-header">
-                <span class="session-time">
-                  <%= session.startTime.toLocaleDateString() %>
-                  <%= session.startTime.toLocaleTimeString() %>
+              <span class="session-time">
+                <%= session.startTime.toLocaleDateString() %>
+                <%= session.startTime.toLocaleTimeString() %>
+              </span>
+              <% if(session.endTime) { %>
+                <span class="session-duration">
+                  <%= Math.round((session.endTime - session.startTime)/60000) %>m
                 </span>
-                <% if(session.endTime) { %>
-                  <span class="session-duration">
-                    ⏱️ <%= Math.round((session.endTime - session.startTime)/60000) %> minutos
-                  </span>
-                <% } else { %>
-                  <span class="session-status">(Em progresso)</span>
-                <% } %>
-              </div>
-              <% if(session.description) { %>
-                <p class="session-description"><%= session.description %></p>
+              <% } else { %>
+                <span class="session-status">ACTIVE</span>
               <% } %>
             </div>
           <% }) %>
