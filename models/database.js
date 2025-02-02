@@ -16,7 +16,7 @@ const StudySession = sequelize.define('StudySession', {
 
 (async () => {
   await sequelize.sync();
-  console.log('Banco de dados conectado e sincronizado!');
+  console.log('Base de dados conectada e sincronizada!');
 })();
 
 module.exports = { StudySession };

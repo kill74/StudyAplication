@@ -1,92 +1,271 @@
 :root {
-    --retro-green: #00ff00;
-    --retro-blue: #00ffff;
-    --retro-pink: #ff00ff;
-    --bg-color: #000000;
-  }
+  --primary-color: #00ff88;    /* Verde neon atualizado */
+  --secondary-color: #00a3ff;  /* Azul moderno */
+  --accent-color: #ff00ff;     /* Rosa retro */
+  --background: #0a0a0a;       /* Preto mais suave */
+  --text-primary: #e0e0e0;     /* Cinza claro para melhor leitura */
+  --pixel-size: 2px;           /* Tamanho do efeito pixel */
   
-  body {
-    background-color: var(--bg-color);
-    color: var(--retro-green);
-    font-family: 'Press Start 2P', cursive;
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .pixel-panel {
-    border: 4px solid var(--retro-green);
-    padding: 20px;
-    margin: 20px 0;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 10px var(--retro-green);
-  }
-  
-  .pixel-button {
-    background: var(--bg-color);
-    color: var(--retro-green);
-    border: 3px solid var(--retro-green);
-    padding: 10px 20px;
-    font-family: inherit;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin: 10px 0;
-    transition: all 0.3s;
-  }
-  
-  .pixel-button:hover {
-    background: var(--retro-green);
-    color: var(--bg-color);
-    box-shadow: 0 0 15px var(--retro-green);
-  }
-  
-  .time-display {
-    font-size: 2.5em;
-    text-align: center;
-    margin: 20px 0;
-    text-shadow: 0 0 10px var(--retro-green);
-  }
-  
-  .stats {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-  }
-  
-  .history {
-    color: var(--retro-blue);
-  }
-  
-  .session-item {
-    padding: 10px;
-    border-bottom: 2px dotted var(--retro-pink);
-    margin: 5px 0;
-  }
-  
-  /* Efeito CRT */
-  body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 100% 4px;
-    z-index: 999;
-    pointer-events: none;
-    animation: scanline 6s linear infinite;
-  }
-  
-  @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+  --font-primary: 'Press Start 2P', cursive;
+  --font-secondary: 'Courier Prime', monospace;
+}
+
+/* Reset moderno */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  line-height: 1.6;
+  font-size: 1.6rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container principal */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Header moderno */
+.header {
+  padding: 3rem 0;
+  border-bottom: 4px solid var(--primary-color);
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
+}
+
+/* Cartões modernos com efeito retro */
+.pixel-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 3px solid var(--primary-color);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.pixel-card:hover {
+  transform: translateY(-5px);
+}
+
+.pixel-card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid var(--accent-color);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Botões profissionais */
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.2rem 2.4rem;
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: var(--background);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+}
+
+.button:hover {
+  background: var(--primary-color);
+  color: var(--background);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+/* Tipografia melhorada */
+h1, h2, h3 {
+  font-family: var(--font-primary);
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 3.2rem;
+  text-shadow: 3px 3px 0 var(--accent-color);
+}
+
+h2 {
+  font-size: 2.4rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--secondary-color);
+}
+
+/* Grid system moderno */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.stat-item {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--secondary-color);
+}
+
+/* Formulários profissionais */
+.input-group {
+  margin: 2rem 0;
+}
+
+.input-field {
+  width: 100%;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--primary-color);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Animação de scanline mais sutil */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 255, 136, 0.05) 51%,
+    transparent 52%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scan 6s linear infinite;
+  z-index: 999;
+  opacity: 0.3;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  html {
+    font-size: 55%;
   }
 
-  
+  .container {
+    padding: 1rem;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Efeito de glitch moderno */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-effect {
+  animation: glitch 1s infinite;
+  text-shadow: 2px 2px var(--accent-color), -2px -2px var(--secondary-color);
+}
+
+/* Progress bar moderna */
+.progress-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  transition: width 0.5s ease;
+}
