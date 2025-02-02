@@ -15,7 +15,7 @@
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7"
   },
-  "author": "Your Name",
+  "author": "Guilherme Sales",
   "license": "ISC",
   "keywords": []
 }
