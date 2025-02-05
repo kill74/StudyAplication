@@ -63,7 +63,19 @@ body {
   flex-direction: column;
   padding: var(--spacing-lg);
 }
+ .hud-label {
+  font-family: var(--font-accent);
+  font-size: 1.8rem;
+  color: var(--graphite-400);
+  margin-bottom: var(--spacing-xs);
+}
 
+.hud-value {
+  font-family: var(--font-accent);
+  font-size: 1.8rem;
+  color: var(--ink-black);
+  margin-bottom: var(--spacing-md);
+}
 /* Enhanced Typography */
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
