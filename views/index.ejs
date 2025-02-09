@@ -10,12 +10,12 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1>STUDY TERMINAL</h1>
+      <h1 class="fade-in">STUDY TERMINAL</h1>
     </header>
 
     <main>
-      <div class="time-display" id="currentSession">00:00:00</div>
-      
+      <div class="time-display fade-in" id="currentSession">00:00:00</div>
+
       <div class="stats-hud">
         <div class="hud-panel">
           <div class="hud-metric">
@@ -28,19 +28,19 @@
           </div>
         </div>
         <br>
-        <button class="sketch-button" id="startStopButton">ENGAGE SESSION</button>
+        <button class="sketch-button pulse" id="startStopButton">ENGAGE SESSION</button>
       </div>
 
-      <div class="session-terminal">
+      <div class="session-terminal sketch-card">
         <div class="terminal-header">
           <div class="terminal-lights">
             <div class="light red"></div>
             <div class="light yellow"></div>
             <div class="light green"></div>
           </div>
-          <h2>SESSION ARCHIVE</h2>
+          <h2 class="sketch-card-header">SESSION ARCHIVE</h2>
         </div>
-        
+
         <div class="session-list">
           <% sessions.forEach(session => { %>
             <div class="session-item">
