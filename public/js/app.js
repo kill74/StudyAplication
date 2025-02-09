@@ -1,20 +1,19 @@
 let currentSessionId = null;
 let timerInterval = null;
+let startTime = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Load summary on startup
   try {
     const response = await fetch('/summary');
     if (!response.ok) throw new Error('Network response was not ok');
     const summary = await response.json();
-    document.getElementById('todayTotal').textContent = formatTime(summary.today);
-    document.getElementById('weekTotal').textContent = formatTime(summary.week);
+    updateSummary(summary);
   } catch (error) {
     console.error('Failed to load summary:', error);
   }
-});
 
-document.getElementById('startStopButton').addEventListener('click', handleStartStop);
+  document.getElementById('startStopButton').addEventListener('click', handleStartStop);
+});
 
 async function handleStartStop() {
   const button = document.getElementById('startStopButton');
@@ -24,8 +23,8 @@ async function handleStartStop() {
     try {
       const response = await fetch('/start', { method: 'POST' });
       if (!response.ok) throw new Error('Failed to start session');
-      const session = await response.json();
-      currentSessionId = session.id;
+      const { id: sessionId } = await response.json();
+      currentSessionId = sessionId;
       button.textContent = '⏹️ Parar Estudo';
       startTimer();
     } catch (error) {
@@ -46,16 +45,23 @@ async function handleStartStop() {
 }
 
 function startTimer() {
-  const startTime = Date.now();
-  timerInterval = setInterval(() => {
-    const elapsed = Date.now() - startTime;
-    document.getElementById('currentSession').textContent = formatTime(elapsed);
-  }, 1000);
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 1000);
 }
 
 function stopTimer() {
   clearInterval(timerInterval);
   document.getElementById('currentSession').textContent = '00:00:00';
+}
+
+function updateTimer() {
+  const elapsed = Date.now() - startTime;
+  document.getElementById('currentSession').textContent = formatTime(elapsed);
+}
+
+function updateSummary({ today, week }) {
+  document.getElementById('todayTotal').textContent = formatTime(today);
+  document.getElementById('weekTotal').textContent = formatTime(week);
 }
 
 function formatTime(milliseconds) {
